@@ -27,7 +27,12 @@ func main() {
 		os.Exit(1)
 	}
 
-	fmt.Println(resp)
+	// number of empty elements in element
+	bs := make([]byte, 99999)
+
+	resp.Body.Read(bs)
+
+	fmt.Println(string(bs))
 }
 
 //func printGreeting(b bot) {
