@@ -52,6 +52,11 @@ func main() {
 
 	// FILE EXAMPLE =============================================================================
 
+	if len(os.Args) < 2 {
+		fmt.Println("NO FILENAME !!!")
+		os.Exit(1)
+	}
+
 	fileName := os.Args[1]
 
 	file, err := os.Open(fileName) // For read access.
