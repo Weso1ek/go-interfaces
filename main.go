@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"io"
+	"os"
 )
 
 type logWriter struct{}
@@ -48,8 +50,19 @@ func main() {
 	printAres(t)
 	printAres(s)
 
-	// =============================================================================
+	// FILE EXAMPLE =============================================================================
 
+	fileName := os.Args[1]
+
+	file, err := os.Open(fileName) // For read access.
+	if err != nil {
+		fmt.Println("Error opening file:", fileName)
+		os.Exit(1)
+	}
+
+	io.Copy(os.Stdout, file)
+
+	fmt.Println(file)
 }
 
 func (lw logWriter) Write(p []byte) (n int, err error) {
